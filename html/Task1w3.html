@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Clean UI</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #f4f6f8;
+        }
+
+        #profile-card {
+            padding: 15px;
+            margin-top: 15px;
+            border: 100px 
+            width:3px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        #profile-photo {
+            display: block;
+            margin: 10px auto;
+            width: 100px;
+            height: 100px;
+        }
+
+        #skills-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0 0;
+        }
+
+        #output {
+            margin: 15px 0;
+            padding: 12px;
+            min-height: 25px;
+            width: 280px;
+            background: #eef3f8;
+            border-left: 5px solid #3498db;
+            border-radius: 6px;
+            font-weight: bold;
+            color: #2c3e50;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .section {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        button {
+            margin: 5px;
+            padding: 6px 12px;
+            cursor: pointer;
+            border: none;
+            border-radius: 6px;
+            background: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        /* Classes */
+        .highlighted { border: 3px solid red; }
+        .dark-mode { background: black; color: yellow; }
+        .rounded { border-radius: 50%; }
+        .shadow { box-shadow: 0px 4px 10px gray; }
+        .show-effect { transform: scale(1.03); background: #dff0ff; }
+    </style>
+</head>
+
+<body>
+
+<h2 id="student-name"></h2>
+<p id="student-bio">Student learning jQuery</p>
+
+<input type="text" id="nickname-input" placeholder="Enter nickname">
+<div id="output">Output will appear here</div>
+
+<div id="profile-card">
+    <!-- working placeholder image -->
+    <img id="profile-photo" src="janisha.jpg" alt="Profile Photo">
+    
+    <ul id="skills-list">
+        <li>HTML</li>
+        <li>CSS</li>
+    </ul>
+</div>
+
+<!-- BUTTON GROUPS -->
+<div class="section">
+    <b>GET & SET</b><br>
+    <button id="btn1">Show Name</button>
+    <button id="btn2">Change Name</button>
+    <button id="btn3">Show Bio</button>
+    <button id="btn4">Get Input</button>
+    <button id="btn5">Set Input</button>
+</div>
+
+<div class="section">
+    <b>CLASSES</b><br>
+    <button id="btn6">Highlight</button>
+    <button id="btn7">Remove</button>
+    <button id="btn8">Dark Mode</button>
+    <button id="btn9">Rounded</button>
+</div>
+
+<div class="section">
+    <b>CSS</b><br>
+    <button id="btn10">Red BG</button>
+    <button id="btn11">Reset BG</button>
+</div>
+
+<div class="section">
+    <b>SHOW / HIDE</b><br>
+    <button id="btn12">Hide Photo</button>
+    <button id="btn13">Show Photo</button>
+    <button id="btn14">Toggle Bio</button>
+</div>
+
+<div class="section">
+    <b>FADE</b><br>
+    <button id="btn15">Fade Out</button>
+    <button id="btn16">Fade In</button>
+    <button id="btn17">Fade 50%</button>
+</div>
+
+<div class="section">
+    <b>SLIDE</b><br>
+    <button id="btn18">Slide Up</button>
+    <button id="btn19">Slide Down</button>
+    <button id="btn20">Toggle Slide</button>
+</div>
+
+<div class="section">
+    <b>ANIMATE</b><br>
+    <button id="btn21">Animate Card</button>
+</div>
+
+<script>
+$(document).ready(function(){
+
+    // GET & SET
+    $("#btn1").click(function(){ 
+        $("#output").text($("#student-name").text());
+    });
+
+    $("#btn2").click(function(){ 
+        $("#student-name").text("Janisha Rayamajhi"); 
+    });
+
+    // ✅ FIXED "Show Bio"
+    $("#btn3").click(function(){ 
+        $("#output").html($("#student-bio").html());
+    });
+
+    $("#btn4").click(function(){ 
+        $("#output").text($("#nickname-input").val()); 
+    });
+
+    $("#btn5").click(function(){ 
+        $("#nickname-input").val("jQuery Pro"); 
+    });
+
+    // CLASSES
+    $("#btn6").click(function(){ $("#profile-card").addClass("highlighted"); });
+    $("#btn7").click(function(){ $("#profile-card").removeClass("highlighted"); });
+    $("#btn8").click(function(){ $("#profile-card").toggleClass("dark-mode"); });
+    $("#btn9").click(function(){ $("#profile-photo").toggleClass("rounded"); });
+
+    // CSS
+    $("#btn10").click(function(){ $("#profile-card").css("background", "#e74c3c"); });
+    $("#btn11").click(function(){ $("#profile-card").css("background", "white"); });
+
+    // SHOW / HIDE
+    $("#btn12").click(function(){ $("#profile-photo").hide("slow"); });
+    $("#btn13").click(function(){ $("#profile-photo").show("slow"); });
+    $("#btn14").click(function(){ $("#student-bio").toggle(); });
+
+    // FADE
+    $("#btn15").click(function(){ $("#profile-card").fadeOut(); });
+    $("#btn16").click(function(){ $("#profile-card").fadeIn(); });
+    $("#btn17").click(function(){ $("#profile-card").fadeTo("slow", 0.5); });
+
+    // SLIDE
+    $("#btn18").click(function(){ $("#skills-list").slideUp(); });
+    $("#btn19").click(function(){ $("#skills-list").slideDown(); });
+    $("#btn20").click(function(){ $("#skills-list").slideToggle(); });
+
+    // ANIMATE
+    $("#btn21").click(function(){
+        $("#profile-card")
+            .animate({marginLeft: "200px"}, 1000)
+            .animate({marginLeft: "0px"}, 1000);
+    });
+
+    // EVENTS
+    $("#profile-photo").mouseenter(function(){ $(this).addClass("shadow"); });
+    $("#profile-photo").mouseleave(function(){ $(this).removeClass("shadow"); });
+
+    $("#nickname-input").keypress(function(e){
+        $("#output").text("Key Pressed: " + e.key);
+    });
+
+});
+</script>
+
+</body>
+</html>

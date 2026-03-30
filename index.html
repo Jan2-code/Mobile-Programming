@@ -1,76 +1,55 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 1.5rem;
-            max-width: 480px;
-            margin: 0 auto;
-        }
-
-        input {
-            width: 100%;
-            padding: 0.5rem;
-            margin: 0.25rem 0;
-            box-sizing: border-box;
-        }
-
-        button {
-            margin: 0.25rem 0.25rem 0.25rem 0;
-            padding: 0.5rem 1rem;
-        }
-
-        #Total {
-            margin-top: 1rem;
-            font-weight: bold;
-        }
-
-        #result {
-            margin-top: 0.25rem;
-            font-style: italic;
-        }
-
-    </style>
-</head>
-<body>
-    <h2>Simple Calculator</h2>
-
-    <input type="number" id="num1" placeholder="Enter first number">
-    <input type="number" id="num2" placeholder="Enter second number">
-
-    <div>
-        <button type="button" onclick="calculateResult('+')">Addition</button>
-        <button type="button" onclick="calculateResult('-')">Substraction</button>
-        <button type="button" onclick="calculateResult('*')">Multiplication</button>
-        <button type="button" onclick="calculateResult('/')">Division</button>
-    </div>
-
-    <p id="result"></p>
-
+    <title>Mobile Programming</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-        function calculateResult(operator) {
-            let num1 = Number(document.getElementById('num1').value);
-            let num2 = Number(document.getElementById('num2').value);
+        $(document).ready(function () {
+            $("button").click(function () {
+                var div = $("#object");
+                // div.css("background-color", "lightcoral");
+                div.animate({ top: '300px', opacity: '0.4' }, "slow", function ($this) {
+                    div.css("background-color", "lightcoral");
+                });
+                div.animate({fontSize: '3em'}, "100");
+                div.animate({ left: '80%', opacity: '0.8' }, "slow", function ($this) {
+                    div.css("background-color", "orange");
+                });
+                div.animate({ top: '0px', opacity: '0.4' }, "slow", function ($this) {
+                    div.css("background-color", "yellow");
+                });
+                div.animate({fontSize: '1em'}, "100");
+                div.animate({ left: '0px', opacity: '0.8' }, "slow", function ($this) {
+                    div.css("background-color", "lightblue");
+                });
+            });
+        });
 
-            let Result;
-            if (operator == '+') {
-                Result = num1 + num2;
-            } else if (operator == '-') {
-                Result = num1 - num2;
-            } else if (operator == '*') {
-                Result = num1 * num2;
-            } else if (operator == '/') {
-                
-            Result = num1 / num2;
-            } 
-
-             document.getElementById('result').innerHTML = "Result: " + Result;
-
-        }
     </script>
+
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="html/task1.html">Task 1</a></li>
+            <li><a href="html/task2.html">Task 2</a></li>
+            <li><a href="html/task3.html">Task 3</a></li>
+            <li><a href="html/task4.html">Task 4</a></li>
+        </ul>
+    </nav>
+
+    <div class="main">
+        <button>Animate</button>
+    </div>
+        <div style="height: 150px; width: 150px; background-color: lightblue; position: relative; display: flex; align-items: center; justify-content: center;"  id="object">
+            <p>Hello</p>
+        </div>
+
 </body>
+
 </html>

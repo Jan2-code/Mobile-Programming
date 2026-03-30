@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Programming</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#Hide").click(function () {
+                $("h1").hide();
+            });
+        });
+        $(document).ready(function () {
+            $("#Show").click(function () {
+                $("h1").show();
+            });
+        });
+        $(document).ready(function () {
+            $("#ChangeCSS").click(function () {
+                $("h1").css("color", "green");
+            });
+        });
+
+    </script>
+
+</head>
+
+<body>
+
+    <div class="main">
+        <h1>Welcome to Mobile Programming</h1>
+
+        <button id="Hide">Hide Title</button>
+        <button id="Show">Show Title</button>
+        <button id="ChangeCSS">Change CSS</button>
+    </div>
+
+</body>
+
+</html>
