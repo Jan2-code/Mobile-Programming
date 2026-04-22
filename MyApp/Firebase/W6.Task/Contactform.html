@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact Us</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f4f4f4;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      width: 350px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: none;
+      height: 80px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 6px;
+      background: #4CAF50;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    #status {
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>Contact Us</h2>
+
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+
+    <p id="status"></p>
+  </div>
+
+  <script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-analytics.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey:"AIzaSyAFbaB1N88OqDzddWW8beayyzahXhG8zfI",
+  authDomain: "fooddonationapp-29bc5.firebaseapp.com",
+  databaseURL: "https://fooddonationapp-29bc5-default-rtdb.firebaseio.com",
+  projectId: "fooddonationapp-29bc5",
+  storageBucket: "fooddonationapp-29bc5.firebasestorage.app",
+  messagingSenderId: "891388433091",
+  appId: "1:891388433091:web:fc528032aa1418ed828876",
+  measurementId: "G-T3YJ2V8X75"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const status = document.getElementById("status"); 
+
+document.getElementById("contactForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const message = document.getElementById("message").value;
+
+  const customId = name.replace(/\s+/g, "_") + "_" + Date.now(); 
+
+  try {
+    status.style.color = "black";
+    status.innerText = "Sending...";
+
+    await setDoc(doc(db, "contacts", customId), { 
+      name: name,
+      email: email,
+      message: message,
+      createdAt: new Date()
+    });
+
+    status.style.color = "green";
+    status.innerText = "Message Sent Successfully!"; 
+
+    document.getElementById("contactForm").reset(); 
+
+  } catch (err) {
+    console.error(err);
+    status.style.color = "red";
+    status.innerText = "Error sending message!";
+  }
+});
+    </script>
+</body>
+</html>
